@@ -5,9 +5,7 @@ date: "31 de março de 2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 Olá pessoal! O objetivo desse tutorial é explicar como utilizar o R para interagir com a rede social Twitter. 
 Aprenderemos a criar funções para buscar tweets e identificar trendind topics de uma determinada região.
