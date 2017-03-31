@@ -3,7 +3,7 @@ title: "Aprendendo R - Interagindo com o Twitter"
 author: "Rosangela Marquesone"
 date: "31 de março de 2017"
 output: html_document
----
+--- 
 
 
 
@@ -34,10 +34,10 @@ Gere os tokens pelo site: https://apps.twitter.com
 Feito isso, troque as informações de tokens abaixo pelas que você obteve do site do Twitter. 
 
 ```{r}
-api_key <- "xxxxxxxxxxxxxxxxxxxxx"
-api_secret <- "xxxxxxxxxxxxxxxxxxxxx"
-access_token <- "xxxxxxxxxxxxxxxxxxxxx"
-acess_token_secret <- "xxxxxxxxxxxxxxxxxxxxx"
+api_key <- "HlVTZ93S61PCk2XEkD9cd2hdt"
+api_secret <- "KapbMDlN3HBexiulqaxrYRMov8RDm4Q5ivVdjXQuwQEAusPb42"
+access_token <- "1232458483-kbRQP6UJMi5rudhnOZbytNKBAobDWiWPxTnn1kr"
+acess_token_secret <- "baGVrzcTLdujSTUtXKQrpg2epGXsQTy8B6d756v2vENDH"
 setup_twitter_oauth(api_key, api_secret, access_token, acess_token_secret)
 
 ```
