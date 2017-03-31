@@ -1,0 +1,83 @@
+---
+title: "Aprendendo R - Interagindo com o Twitter"
+author: "Rosangela Marquesone"
+date: "31 de março de 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Olá pessoal! O objetivo desse tutorial é explicar como utilizar o R para interagir com a rede social Twitter. 
+Aprenderemos a criar funções para buscar tweets e identificar trendind topics de uma determinada região.
+
+Para esse tutorial, utilizei os seguintes programas:
+
+* [R Versão 3.2.3](https://cran.rstudio.com/)
+* [RStudio Versão 1.0.136](https://www.rstudio.com/products/rstudio/download/)
+
+Primeiramente, precisamos instalar os pacotes necessários com os comandos a seguir:
+
+```{r, eval = FALSE}
+install.packages(c("devtools", "rjson", "bit64", "httr"))
+install_github("geoffjentry/twitteR")
+```
+
+```{r}
+library(devtools)
+library(twitteR)
+```
+
+## Criando os tokens necessários para interagir com o Twitter
+
+Gere os tokens pelo site: https://apps.twitter.com
+
+Feito isso, troque as informações de tokens abaixo pelas que você obteve do site do Twitter. 
+
+```{r}
+api_key <- "HlVTZ93S61PCk2XEkD9cd2hdt"
+api_secret <- "KapbMDlN3HBexiulqaxrYRMov8RDm4Q5ivVdjXQuwQEAusPb42"
+access_token <- "1232458483-kbRQP6UJMi5rudhnOZbytNKBAobDWiWPxTnn1kr"
+acess_token_secret <- "baGVrzcTLdujSTUtXKQrpg2epGXsQTy8B6d756v2vENDH"
+setup_twitter_oauth(api_key, api_secret, access_token, acess_token_secret)
+
+```
+
+## Buscando tweets que tenham a palavra big data
+
+Você pode pesquisar por tweets de acordo com uma palavra ou um conjunto de palavras. Nesse exemplo, iremos buscar por tweets que contenham a palavra **BigData**, a partir do mês de agosto de 2016. A indicação de data é opcional.
+
+```{r}
+BigDataTweets = searchTwitter("BigData", since='2016-08-08')
+```
+
+Para visualizar os tweets coletados, podemos utilizar o comando head:
+
+```{r}
+head(BigDataTweets, 3)
+```
+
+## Buscando trending topics
+
+Nesse exemplo iremos identificar os trendind topics (hastags mais mencionadas) na cidade do Rio de Janeiro.
+
+```{r}
+trendsLoc <- availableTrendLocations()
+
+trendsBR <- subset(trendsLoc, country == "Brazil")
+IDtrendsRJ <- subset(trendsBR, name =="Rio de Janeiro")$woeid
+trendsRJ <- getTrends(woeid = IDtrendsRJ)
+```
+
+Com o comando a seguir visualizamos quais são os trendind topics atuais.
+
+```{r}
+head(trendsRJ$name)
+```
+
+Aproveite o código e faça outras interações com o Twitter.
+
+Referências:
+
+[Mastering Social Media Mining with R](https://www.packtpub.com/big-data-and-business-intelligence/mastering-social-media-mining-r)
